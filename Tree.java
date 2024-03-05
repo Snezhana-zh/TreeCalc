@@ -9,21 +9,21 @@ public class Tree {
         right = r;
         value = val;
     }
-    public void print() {
-        System.out.print(value);
-        System.out.print(' ');
-        if (left != null && right != null) {
-            left.print();
-            right.print();
+    public static void print(Tree node) {
+        if (node != null) {
+            System.out.print(node.value);
+            System.out.print(' ');
+            print(node.left);
+            print(node.right);
         }
     }
-    public int calc() {
-        if (isLeaf()) {
-            return value;
+    public static int calc(Tree node) {
+        if (node.isLeaf()) {
+            return node.value;
         }
-        int leftRes = left.calc();
-        int rightRes = right.calc();
-        switch (value) {
+        int leftRes = calc(node.left);
+        int rightRes = calc(node.right);
+        switch (node.value) {
             case '+': return leftRes + rightRes;
             case '*': return leftRes * rightRes;
             case '-': return leftRes - rightRes;
